@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 
 const userRoute = require('./routes/user.js');
+const blogRoute = require('./routes/blog.js');
+
 const { checkForAuthenticationCookie } = require('./middlewares/authentication.js');
 
 const app = express();
@@ -24,6 +26,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user', userRoute);
+app.use('/blog', blogRoute);
+
 
 app.listen(PORT, (err) => {
     if (err) {
