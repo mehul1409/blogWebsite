@@ -3,6 +3,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 
+const blog = require('./models/blog.js');
+
 const userRoute = require('./routes/user.js');
 const blogRoute = require('./routes/blog.js');
 
@@ -18,10 +20,13 @@ app.set('views', path.resolve("./views"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve('/public')));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    const allBlogs = await blog.find({});
     res.render("home",{
         user:res.user,
+        blogs:allBlogs,
     });
 })
 

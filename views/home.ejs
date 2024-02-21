@@ -6,7 +6,18 @@
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
-
+    <div class="container mt-3">
+        <% blogs.forEach(blogs => { %>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <img src="<%= blogs.coverImageURL %>" alt="">
+                  <h5 class="card-title"><%= blogs.title %></h5>
+                  <a href="#" class="btn btn-primary">view</a>
+                </div>
+              </div>
+        <% }) %>
+    </div>
    <%- include('./partials/script.ejs') %>
 </body>
 </html>
